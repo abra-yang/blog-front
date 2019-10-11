@@ -1,11 +1,12 @@
 
 import React from 'react'
 import '../css/login.css'
-import UserSevice from '../service/user'
 import {Redirect,Link} from 'react-router-dom'
 import { observer } from 'mobx-react'
+import {Service as userservice } from '../service/user'
+import {message} from 'antd'
+import 'antd/lib/message/style'
 
-const userservice = new UserSevice()
 export default class Reg extends React.Component{
   render(){
     return(
@@ -27,6 +28,8 @@ class _Reg extends React.Component{
     }
     render(){
         if (this.props.service.reged){
+          console.log(this.props.service.regMsg)
+          message.info(this.props.service.regMsg,5)
           return <Redirect to = '/login' />
         }
         return(

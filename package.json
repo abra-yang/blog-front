@@ -36,7 +36,7 @@
     "webpack-dev-server": "^2.4.2"
   },
   "dependencies": {
-    "antd": "^3.1.5",
+    "antd": "^3.23.6",
     "axios": "^0.16.1",
     "babel-polyfill": "^6.23.0",
     "babel-runtime": "^6.23.0",

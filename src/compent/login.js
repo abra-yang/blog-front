@@ -1,11 +1,11 @@
 
 import React from 'react'
 import '../css/login.css'
-import UserSevice from '../service/user'
 import { observer } from 'mobx-react'
 import {Redirect,Link} from 'react-router-dom'
+import {Service as userserivce } from '../service/user'
 
-const userserivce = new UserSevice();
+
 
 export default class Login extends React.Component{
     render(){
