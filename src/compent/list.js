@@ -1,9 +1,10 @@
 import React from 'react'
 import { postservice as post } from '../service/post'
 import { observer } from 'mobx-react';
-import { List } from 'antd'
+import { List ,Pagination} from 'antd'
 import {  Link } from 'react-router-dom'
 import 'antd/lib/list/style'
+import 'antd/lib/pagination/style'
 
 export default class L extends React.Component {
     render() {
@@ -25,7 +26,7 @@ class _L extends React.Component {
             return (
                 <div>
                     <List
-                        footer={<div>Footer</div>}
+                        footer={<div><Pagination defaultCurrent={1} pageSize= {3} total={7} /></div>}
                         bordered
                         dataSource={data}
                         renderItem={item => (

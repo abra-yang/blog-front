@@ -1,38 +1,48 @@
 import React from 'react'
 import { postservice as post } from '../service/post'
 import { observer } from 'mobx-react';
-import { Card} from 'antd'
-import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Card, Descriptions, Row, Col } from 'antd'
+
 
 import 'antd/lib/card/style'
-
+import 'antd/lib/descriptions/style'
 export default class Getblog extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props)
-        console.log(props,'1')
+        this.tid = props.match.params['id']
     }
     render() {
-        return (<_Getblog post={post} />)
+        return (<_Getblog post={post} tid={this.tid} />)
     }
 }
 
 @observer
 class _Getblog extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props)
-        console.log('~jj',props)
+        props.post.gettitle(this.props.tid)
     }
     render() {
-            return (
-                <div>
-                <Card title="Default size card"  style={{ width: 300 }}>
-                  <p>Card content</p>
-                  <p>Card content</p>
-                  <p>Card content</p>
-                </Card>
-              </div>
-            )
+        const info = this.props.post.postinfo
+        return (
+            <div>
+                <Row>
+                    <Col span={4}></Col>
+                    <Col span={16}>                    
+                    <Card title={info['title']} style={{ width: 800 }}>
+                        <Descriptions >
+                            <Descriptions.Item label="作者">{info['auther']}</Descriptions.Item>
+                            <Descriptions.Item label="发布时间">{info['postdate']}</Descriptions.Item>
+                        </Descriptions>
+                        <p>{info['content']}</p>
+                    </Card></Col>
+                    <Col span={4}></Col>
+
+                </Row>
+            </div>
+        )
 
     }
 }
+
+

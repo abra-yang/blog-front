@@ -8,6 +8,8 @@ class PostService{
     @observable pubMsg =''
     @observable pubed = false
     @observable posts = []
+    @observable pageinfo ={}
+    @observable postinfo = ''
     pub(title,content){
         axios.post('/api/post/pub',{title,content},{headers: {'jwt': store.get('token',null)}}).then(
             response =>{
@@ -23,9 +25,9 @@ class PostService{
     getall(){
         axios.get('/api/post/').then(
             response =>{
-                
                 this.posts = response.data['post']
-                console.log('postjs',response.data['post'])
+                this.pageinfo = response.data['pageinfo']
+                console.log(this.pageinfo )
             }
         ).catch(function(error){
             console.log('error~~~~')
@@ -35,7 +37,8 @@ class PostService{
     gettitle(id){
         axios.get('/api/post/'+id).then(
             response =>{
-                console.log(response.data['post'])
+                this.postinfo = response.data['post']
+                console.log(this.postinfo)
             }
         ).catch(function(error){
             console.log('error~~~~')
